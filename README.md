@@ -1,4 +1,4 @@
-
+### git 基本操作
 添加到暂存区
 ```git add .```
 本次提交描述
@@ -16,3 +16,7 @@ orign是地址
 ```git push -u orign master ```
 
 git clone 地址 下载代码到本地
+
+
+远程更新代码到本地
+```git pull``` 
