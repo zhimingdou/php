@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="login">login</router-link>
+        <router-link to="register">register</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var register = {
+            template: '<h3>注册组件</h3>'//用es6模板字符串写模板可以换行
+        };
+        var login = {
+            template: '<h3>登录组件</h3>'
+        };
+
+        var routerobj = new VueRouter({
+            routes: [                    //路由规则
+                { path: '/',redirect:'/login'},//默认显示
+                { path: '/login', component: login },
+                { path: '/register', component: register }
+            ]
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {},
+            router: routerobj
+        });
+
+
+
+
+    </script>
+
+</body>
+
+</html>

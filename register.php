@@ -18,6 +18,9 @@ $code.='<span style="color:rgb('.mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0
     <title></title>
     <meta charset="utf-8" />
     <title>用户注册</title>
+    
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/router.js"></script>
 
     <style>
         
@@ -41,32 +44,57 @@ $code.='<span style="color:rgb('.mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0
         body{
             margin: 0;
             padding: 0;
-            background:url(img/1.jpg);
+            background:url(./img/1.jpg);
             background-size:cover; 
+            
 
         }
         .form_contian{
             margin: 0 auto;
             width: 800px;
             height: 1000px;
-            
             opacity: .5;
             position: relative;
+        }
+        .app{
+            width: 300px;
+            height: 400px;
+            position: relative;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-top: 20%;
+           
+        }
+        .nav{
+            width: 300px;
+            height: 40px;
+            text-align: center;
+            line-height:40px;
+        
         }
         .from{
             width: 300px;
             height: 350px;
+            margin: 0;
+            padding: 0;
             background-color: rgb(255, 255, 255);
-            /* border: 1px solid #dbe0de; */
-            top: 30%;
-            left: 50%;
+            border: 1px solid #dbe0de; 
             position: absolute;
-            margin-top: -75px;
-            margin-left: -150px;
-            z-index: 1;
             border-radius: 6%;
-
         }
+        .nav a{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            display: inline-block;
+            width: 130px;
+            height: 40px;
+            border-radius: 6% 6% 0 0;
+        }
+
         .form_reg{
             text-align: center;
             height: 150px;
@@ -78,110 +106,92 @@ $code.='<span style="color:rgb('.mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0
             width:180px;
             border-radius: 5px;
         }
+        /* .router-link-active{
+            font-size: 20px;
+              text-align: center; */
+            /* background-color: aliceblue;
+          
+        } */
+        
 
     </style>
 </head>
 <body>
     <div class="form_contian">
-        <form class="from">
-            <div class="form_reg">
-                <h3>register</h3>
-                <div>
-                    <input type="text" name="username" placeholder="请输入用户名" required="required">
-                </div>
-                <div>
-                    <input type="password" name="password"  required="required" title="" placeholder="请输入密码">
-                </div>
-                <div>
-                <input type="password" name="repassword"  required="required" title="" placeholder="重复输入密码">
-                
-                </div>
-                <div>
-                    <input type="text" name="email" placeholder="请输入邮箱" required="required">
-                </div>
-
-                <div>
-                     <input type="text" name="verify" placeholder="请输入验证码"required="required">
-                </div>
-                <div><span><?php echo $code; ?></span></div>
-                <div>
-                    <input type="submit" value="注册">
-                </div>
+            <div class="app">
+                <div class="nav">
+                    <router-link to="/login">登录</router-link>
+                    <router-link to="/register">注册</router-link>
+                    <router-view><router-view>
+                </div> 
             </div>
-                
-        </form>
+        
     </div>
 
 </body>
 </html>
+<script>
+    var register = {
+        template:`<form class="from">
+                    <div class="form_reg">
+                        <h3>register</h3>
+                        <div>
+                            <input type="text" name="username" placeholder="请输入用户名" required="required">
+                        </div>
+                        <div>
+                            <input type="password" name="password"  required="required" title="" placeholder="请输入密码">
+                        </div>
+                        <div>
+                        <input type="password" name="repassword"  required="required" title="" placeholder="重复输入密码">
+                        
+                        </div>
+                        <div>
+                            <input type="text" name="email" placeholder="请输入邮箱" required="required">
+                        </div>
 
+                        <div>
+                            <input type="text" name="verify" placeholder="请输入验证码"required="required">
+                        </div>
+                        <div><span><?php echo $code; ?></span></div>
+                        <div>
+                            <input type="submit" value="注册">
+                        </div>
+                    </div>         
+                </form>`
+    };
+    var login = {
+        template:`<form class="from">
+                    <div class="form_reg">
+                        <h3>login</h3>
+                        <div>
+                            <input type="text" name="username" placeholder="请输入用户名" required="required">
+                        </div>
+                        <div>
+                            <input type="password" name="password"  required="required" title="" placeholder="请输入密码">
+                        </div>
+                        <div>
+                            <input type="text" name="verify" placeholder="请输入验证码"required="required">
+                        </div>
+                        <div><span><?php echo $code; ?></span></div>
+                        <div>
+                            <input type="submit" value="登录">
+                            <input type="submit" value="忘记密码">
+                        </div>
+                    </div>           
+                </form>`
+    };
 
-/*
-header("Access-Control-Allow-Origin: *");
-
-session_start();
-
-if(isset($_POST["submit"]) && $_POST["submit"] == "马上注册") {
-    $tel = $_POST["tel"];
-    $password = $_POST["password"];
-    $password_conf = $_POST["confirm"];
-    $hometown = $_POST["hometown"];
-    $tasty = $_POST["tasty"];
-    $type_of_cooking = $_POST["type_of_cooking"];
-
-    if($tel == "" || $password == "" || $password == "" || $password_conf == "" || $hometown == "" || $tasty == "" || $type_of_cooking == "") {  //用户信息不完整
-
-        $json_arr = array('success' => 0);
-    }
-    else {
-        if($password == $password_conf) {
-            include "connect_mysql.php";
-            //require_once('connect_mysql.php');
-
-            $sql = "select tel from user where tel = '$_POST[tel]'"; //SQL语句
-            $result = mysqli_query($link, $sql);    //执行SQL语句
-            $num = mysqli_num_rows($result); //统计执行结果影响的行数
-            if($num) {   //如果已经存在该用户
-
-                $json_arr = array('success' => -1);
-            }
-            else {   //不存在当前注册用户名称
-
-                $sql_insert = "insert into user (user_tel, password, hometown, tasty, type_of_cooking)
-                      values('$_POST[tel]', '$_POST[password]', '$_POST[hometown]','$_POST[tasty]', '$_POST[type_of_cooking]')";
-                $res_insert = mysqli_query($link, $sql_insert);
-                //$num_insert = mysql_num_rows($res_insert);
-                if($res_insert) {   //注册成功
-                    $json_arr = array('success' => 1);
-                }
-                else { //系统忙碌,请稍后重试
-                    $json_arr = array('success' => -3);
-                }
-            }
-        }
-        else {  //密码不一致
-            $json_arr = array('success' => -2);
-        }
-    }
-    $register_json = json_encode($json_arr, TRUE);
-    echo $register_json;
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p>
-<?php echo $code; ?>
-</p>
+  
+    var routerobj = new VueRouter({
+        routes:[ 
+            { path: '/',redirect:'/login'},
+            {path:'/login',component:login},
+            {path:'/register',component:register}
+        ]
+    })
+    
+    new Vue({
+        el:'.app',
+        router:routerobj
+    })
+</script>
