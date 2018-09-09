@@ -127,12 +127,13 @@ $code.='<span style="color:rgb('.mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0
             </div>
         
     </div>
+    
 
 </body>
 </html>
 <script>
     var register = {
-        template:`<form class="from">
+        template:`<form action="./doreg.php" method="post" class="from">
                     <div class="form_reg">
                         <h3>register</h3>
                         <div>
@@ -153,6 +154,7 @@ $code.='<span style="color:rgb('.mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0
                             <input type="text" name="verify" placeholder="请输入验证码"required="required">
                         </div>
                         <div><span><?php echo $code; ?></span></div>
+                        <input type="hidden" name='verify1' value='<?php echo $code; ?>' >
                         <div>
                             <input type="submit" value="注册">
                         </div>
